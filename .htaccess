@@ -1,0 +1,19 @@
+AddType application/x-httpd-php71 .php
+
+AuthName IomundoArea
+AuthType Basic
+AuthUserFile /xampp/htdocs/iomundo/.htpasswd
+Require valid-user
+
+RewriteEngine On
+Options -Indexes
+RewriteBase /iomundo/
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule (.*)$ index.php?url=$1 [QSA,L]
+
+<FilesMatch .*\.(jpg|jpeg|JPG|gif|png)>
+Order Deny,Allow
+Allow from all
+</FilesMatch>
